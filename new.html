@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Page Title</title>
+</head>
+
+<script>
+
+    let aUsersturns = [];
+    let aDealerturns = [];
+
+    let userscore = 26;
+    let dealerscore = 26;
+
+    function lotocards() {
+        var usercard = Math.floor(Math.random() * 13 + 2);
+        aUsersturns.push(usercard);
+        console.log(aUsersturns);
+
+        var usercardoutput = "";
+        if(usercard === 11) {
+            usercardoutput = "J"
+        } else {
+            if(usercard === 12) {
+                usercardoutput = "Q";
+            } else {
+                if(usercard === 13) {
+                    usercardoutput = "K";
+                } else {
+                    if(usercard ===14) {
+                        usercardoutput = "A";
+                    } else {
+                        usercardoutput = usercard;
+                    }
+                }
+            }    
+        }
+        
+
+        document.getElementById("usercardnum").innerHTML = usercards;
+
+        var dealercard = Math.floor(Math.random() * 13 + 2);
+        aDealerturns.push(dealercard);
+        console.log(aDealerturns);
+
+        var dealercardoutput = "";
+        if(dealercard === 11) {
+            dealercardoutput = "3"
+        } else {
+            if(dealercard === 12) {
+                dealercardoutput = "Q";
+            } else {
+                if(dealercard === 13) {
+                    dealercardoutput = "K";
+                } else {
+                    if(dealercard === 14) {
+                        dealercardoutput = "A";
+                    } else {
+                        dealercardoutput = dealercard;  
+                    }
+                }   
+            }
+        }
+
+        document.getElementById("dealercardnum").innerHTML = dealercards;\
+
+         //dealer char:
+         var dealerchar = Math.floor(Math.random() * 4 + 1);
+        console.log("dealerchar" + dealerchar);
+
+        switch(dealerchar) {
+            case 1:
+                dealerchar = "&hearts;";
+                document.getElementById("dealerchar").style.color = "red";
+                document.getElementById("dealerbigchar").style.color = "red";
+            break;
+
+            case 2:
+                dealerchar = "&spades;";
+                document.getElementById("dealerchar").style.color = "black";
+                document.getElementById("dealerbigchar").styler.color = "black";
+            break;
+
+            case 3:
+                dealerchar = "&diams";
+                document.getElementById("dealerchar").style.color = "red";
+                document.getElementById("dealerbigchar").style.color = "red";
+            break;
+
+            case 4:
+            dealerchar = "&clubs;";
+            document.getElementById("dealerchar").style.color = "black";
+            document.getElementById("dealerbigchar").style.color = "black";
+            break;
+
+        document.getElementById("dealerchar").innerHTML = userchar;
+        document.getElementById("dealerbigchar").innerHTML = userchar;
+        }
+
+
+
+
+        //user char:
+        var userchar = Math.floor(Math.random() * 4 + 1);
+        console.log("userchar" + userchar);
+
+        switch(userchar) {
+            case 1:
+                userchar = "&hearts;";
+                document.getElementById("dealerchar").style.color = "red";
+                document.getElementById("dealerbigchar").style.color = "red";
+            break;
+
+            case 2:
+                userchar = "&spades;";
+                document.getElementById("dealerchar").style.color = "black";
+                document.getElementById("dealerbigchar").styler.color = "black";
+            break;
+
+            case 3:
+                userchar = "&diams";
+                document.getElementById("dealerchar").style.color = "red";
+                document.getElementById("dealerbigchar").style.color = "red";
+            break;
+
+            case 4:
+            userchar = "&clubs;";
+            document.getElementById("dealerchar").style.color = "black";
+            document.getElementById("dealerbigchar").style.color = "black";
+            break;
+
+        document.getElementById("dealerchar").innerHTML = userchar;
+        document.getElementById("dealerbigchar").innerHTML = userchar;
+        }
+
+        //score:
+        if(usercard === dealercard) {
+            ifqual();
+        } else {
+            if(usercard > dealercard) {
+                userscore++;
+                dealerscore--;
+            } else {
+                if(dealercard > usercard) {
+                    dealerscore++;
+                    userscore--;
+                }
+            }
+        }
+
+        // Display Scores:
+        document.getElementById("dealerscore").innerHTML = dealerscore;
+        document.getElementById("userscore").innerHTML = userscore;
+
+        //Display cards:
+        document.getElementById("dealercardnum").innerHTML = dealercards;
+        document.getElementById("usercardnum").innerHTML = usercards;
+        console.log("user score: " + userscore);
+        console.log("dealer score: " + dealerscore);
+        checkingscores();
+        display(dealercard, usercard);
+
+
+        var dealerturns = "";
+        var i;
+        for{i = 0; i < aDealerturns.length; i++) {
+            dealerturns = dealerturns + aDealerturns[i] + ", ";
+            document.getElementById("dealertuns").innerHTML = aDealertuns;
+        }
+
+        var userturns = "";
+        var i;
+        for{i = 0; j < aDealerturns.length; i++) {
+            dealerturns = dealerturns + aDealerturns[i] + ", ";
+            document.getElementById("userturns").innerHTML = aDealertuns;
+        }
+    }
+
+
+    function ifqual() {
+        var usercard = Math.floor(Math.random() * 13 + 2);
+        aUsersturns.push(usercard);
+        console.log(aUsersturns);
+
+        var dealercard = Math.floor(Math.random() * 13 + 2);
+        aDealerturns.push(dealercard);
+        console.log(aDealerturns);
+
+        if(usercard === dealercard) {
+            ifqual();
+        } else {
+            if(usercard > dealercard) {
+                userscrore = userscore +4;
+                dealerscore = dealerscore -4;
+            } else {
+                if(dealerscore > userscore) {
+                    dealerscore = dealerscore +4;
+                    userscore = userscore -4;
+                }
+            }
+        }
+    }
+    
+    function chekingscores() {
+        if(userscore <= 0) {
+            userscore = 0;
+            alert("Dealer Win!");
+        } else {
+            if(dealerscore <= 0) {
+                userscore = 0;
+                alert("User Win");
+            }
+        }
+    }
+
+    </script>
+
+    <style>
+
+        ;root {
+            ==mainfont: Scope UI;
+        }
+
+        html {
+            font-family: var(--mainfont);
+        }
+
+        body {
+            text-align: center;
+        }
+
+        header {
+            margin: 10px 0 40px 0;
+        }
+
+        .players {
+            display: grid;
+            grid-template-columns: ifr ifr ifr ifr;
+        }
+
+    function display(dealercard, usercard) {
+        document.getElementById("dealerscore").innerHTML = dealerscore;
+        document.getElementById("userscore").innerHTML = userscore;
+        
+        document.getElementById("dealercardnum").innerHTML = dealercard;
+        document.getElementById("usercardnum").innerHTML = usercard;
+        
+    }
+   
+</script>
+
+<style>
+
+    :root {
+        --mainfont: segoe UI;
+        --grey: #ccc;
+        --shadow: 3px 6px 8px #333;
+    }
+
+    html {
+        font-family: var(--mainfont);
+    }
+
+    body {
+        text-align: center;
+        background: #345;
+    }
+
+    header {
+        margin: 10px 0 40px 0;
+        color: white;
+        font-size: 1.2rem;
+    }
+
+.players {
+    display: grid;
+    grid-template-columns: ifr ifr ifr ifr;
+}
+
+.playertitle {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.score {
+    color: white;
+    font-weight: bold;
+}
+
+.score::before {
+    content: "Score: ";
+    font-weight: 400;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 320px;
+}
+
+.topcard {
+    text-allign: left;
+    margin: 20px 0 0 25px;
+    font-size: 1.5rem;
+}
+
+.middlecard {
+    font-size: 6rem;
+    margin-top: 40px;
+}
+
+.card > div {
+    text-allign: left;
+    margin: 20px 0 0 25px;
+}
+
+#mainbtn {
+    margin-top: 20%;
+    font- family: var(--mainfont);
+    padding: 15px 20px;
+    font-weight: bold;
+    background: white;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    font-size: iren;
+    transition: 100ms;
+}
+
+#mainbtn:hover {
+    background: #333;
+    color: white;
+    box-shadow: none;
+}
+
+#mainbtn:active {
+    background: #345;
+    border: none;
+    color: white;
+}
+
+.resetbtn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+#resetbtn {
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 100ms ease-in-out;
+}
+
+#resetbtn::after {
+    font-size: 1rem;
+    content: " reset game";
+}
+
+footer {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    color: white;
+    text-align: left;
+}
+
+#dealerturns ::before {
+    content: "Dealer Turns: "
+}
+
+#userturns::before {
+    content: "User Turns: "
+}
+
+}
+
+</style>
+
+<body>
+
+    <header>
+        &hearts;
+        &spades;
+        war playing card Game
+    </header>
+
+&diams;
+&clubs;
+
+    <header>War Playing Card Game</header>
+
+    <section class="players">
+        <div>
+            <div class="playertitle">Dealer</div>
+            <div class="score" id="dealerscore"></div>
+           
+            <div class="card">
+            </div class="topcard"><br>
+                     <label class="cardnum" id="dealercardnum"></label>
+                    <label class="char" id="dealercahr"></label>
+                </div>
+                <div class="middlecard">
+                    <label id="dealerbigchar"class="bigchar"></label>
+            </div>
+
+        </div class="pointer" id="pointer">as</div>
+
+        <div>
+            <div class="playertitle">User</div>
+            <div class="score" id="userscore"></div>
+
+            <div class="card">
+               <div> class="topcard"><br>
+                   <label class="cardnum" id="usercardnum"></label>
+                   <label class="char" id="userchar"></label>
+               </div>
+               <div class="middlecard">
+               <label id="userbigchar" class="bigchar"></label>
+            </div>
+
+        </div>
+    </section>
+     
+    <br><br><br>
+    <input type=""button" value="Next Turn" onclick="lotocards();">
+    <div class=""resetbtn"><a id="resetbtn" onclick="location.reload();
+
+    <footer>
+        <div></div>
+        <div class="turns" id="dealerturns"></div>
+        <div></div>
+        <div class="turns" id="userturns"><</div>
+        <div><</div>
+    </footer>
+
+    <div class="copyright"> </div>
+
+
+                <input type=""button" value="Next Turn" onclick="lotocards();">
+
+
+</body>
+</html>
+               
+    
+            
+        }
+
+
+    }
